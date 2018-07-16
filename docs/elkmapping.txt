@@ -16,6 +16,9 @@ PUT /iot
                 "rx_id": {
                     "type": "keyword"
                 },
+                "band": {
+                    "type": "integer"
+                },
                 "channel": {
                     "type": "integer"
                 },
@@ -28,9 +31,6 @@ PUT /iot
                 "localname": {
                     "type": "keyword"
                 },
-                "codename": {
-                    "type": "keyword"
-                },
                 "deviceid": {
                     "type": "keyword"
                 },
@@ -38,6 +38,15 @@ PUT /iot
                     "type": "keyword"
                 }
             }
+        }
+    }
+}
+
+PUT  iot/_settings
+{
+    "index": {
+        "blocks": {
+            "read_only_allow_delete": false
         }
     }
 }
