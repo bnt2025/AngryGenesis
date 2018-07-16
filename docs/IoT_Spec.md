@@ -42,20 +42,35 @@ Some of the assumed common parameters so far are;
 ## Common IoT Spec
 The preference for file format is JSONL containing the following keys.
 
-timestamp.  Timestamp of the capture in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
-type.       IoT protocol. For ease I think it should be the name in all lowercase instead of a lookup table.
-tx_id.      Transmitter ID of the remote device. The foramt of this will probably change between different protocols. 
-rx_id.      Receiver ID that the remote device was talking to.
-band.       The RF band that the data was captured on. I guess we should have a lookup table that this references.
-channel.    The channel number that the data was captured on. I've not really seen anything that uses raw frequency values. 
-rssi.       Measured signal strength in dBm.
-location.   A dict containg the keys "lat" and "lon", with their values as doubles.
-localname.  Friendly display name for the capture device.  
-codename.   A tag for a capture session.
-deviceid.   Unique identifer for the capture device
+Field Name | Data Type | Description
+--- | --- | ---
+timestamp|String|Timestamp of the capture in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
+type|String|IoT protocol. For ease I think it should be the name in all lowercase instead of a lookup table.
+tx_id|String|Transmitter ID of the remote device. The foramt of this will probably change between different protocols. 
+rx_id|String|Receiver ID that the remote device was talking to.
+band|Integer|The RF band that the data was captured on. I guess we should have a lookup table that this references.
+channel|Integer|The channel number that the data was captured on. I've not really seen anything that uses raw frequency values. 
+rssi|Integer|Measured signal strength in dBm.
+location|dictonary|A dict containg the keys "lat" and "lon", with their values as doubles.
+localname|String|Friendly display name for the capture device.  
+codename|String|A tag for a capture session.
+deviceid|String|Unique identifer for the capture device
+
+### Band Table
+This is just the ISM bands from https://en.wikipedia.org/wiki/ISM_band#Frequency_allocation
+| Index | Start | Stop
+| --- | --- | --- |
+| 1	| 6.765 | 6.795 |
+| 2	| 13.553 | 13.567 |
+| 3	| 26.957  | 27.283 |
+| 4| 40.66 | 40.7 |
+| 5	| 433.05 | 434.79 |
+| 6	| 902  | 928 |
+| 7	| 2400 | 2500 |
+| 8 | 5725 | 5875 |
 
 ### Example data
-{"timestamp":"2018-06-06T23:59:52.511+00:00", "type":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":"1", "channel": "15", "rssi":"-10", "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
+{"timestamp":"2018-06-06T23:59:52.511+00:00", "type":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":7, "channel": 15, "rssi": -10, "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
  
 ## Zigbee
 Zigbee is a mesh protocol. Each node can act as a data source and a repeater.
