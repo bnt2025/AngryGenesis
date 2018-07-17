@@ -58,16 +58,16 @@ deviceid|String|Unique identifer for the capture device
 
 ### Band Table
 This is just the ISM bands from https://en.wikipedia.org/wiki/ISM_band#Frequency_allocation
-| Index | Start | Stop
-| --- | --- | --- |
-| 1	| 6.765 | 6.795 |
-| 2	| 13.553 | 13.567 |
-| 3	| 26.957  | 27.283 |
-| 4| 40.66 | 40.7 |
-| 5	| 433.05 | 434.79 |
-| 6	| 902  | 928 |
-| 7	| 2400 | 2500 |
-| 8 | 5725 | 5875 |
+Index | Start | Stop
+--- | --- | --- 
+1|6.765|6.795 
+2|13.553|13.567 
+3|26.957|27.283 
+4|40.66|40.7 
+5|433.05|434.79 
+6|902|928 
+7|2400|2500 
+8|5725|5875 
 
 ### Example data
 {"timestamp":"2018-06-06T23:59:52.511+00:00", "type":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":7, "channel": 15, "rssi": -10, "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
