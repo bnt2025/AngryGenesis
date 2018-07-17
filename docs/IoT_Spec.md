@@ -82,6 +82,37 @@ Designed to work on the 2.4GHz ISM band.
 
 Typical output power for each node is 18 dBm
 
+#### Bands
+Channel Number | Frequency (MHz)
+--- | ---
+0 |	868 
+1 |	906 
+2 |	908 
+3 |	910 
+4 |	912 
+5 |	914 
+6 |	916 
+7 | 918 
+8 |	920 
+9 |	922 
+10 | 924  
+11 | 2405 
+12 | 2410 
+13 | 2415 
+14 | 2420 
+15 | 2425 
+16 | 2430 
+17 | 2435 
+18 | 2440 
+19 | 2445
+20 | 2450
+21 | 2455
+22 | 2460
+23 | 2465
+24 | 2470
+25 | 2475
+26 | 2480
+
 ### Derived parameters
 
  
