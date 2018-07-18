@@ -10,8 +10,6 @@ from threading import Thread, Event
 from CC2531 import *
 from receiver import *
 from interpreter import *
-from gps import *
-
 
 def LOG(msg=''):
     print('[sniffer] %s' % msg)
@@ -118,8 +116,6 @@ def prolog():
                         help='time (in seconds) to sniff on a single channel before hopping')
     parser.add_argument('-n', '--nofcschk', action='store_true', default=False,
                         help='displays all sniffed frames, even those with failed FCS check')
-    parser.add_argument('--gps', type=str, default='/dev/ttyUSB0',
-                        help='serial port to get NMEA information from GPS')
     parser.add_argument('--ip', type=str, default='localhost',
                         help='network destination for forwarding 802.15.4 frames')
     parser.add_argument('--filesock', action='store_true', default=False,
@@ -135,7 +131,6 @@ def prolog():
     if args.debug:
         LOG(' command line arguments:\n%s' % repr(args))
     CC2531.DEBUG = max(0, args.debug-2)
-    GPS_reader.DEBUG = max(0, args.debug-2)
     receiver.DEBUG = max(0, args.debug-1)
     interpreter.DEBUG = args.debug
 
@@ -145,8 +140,6 @@ def prolog():
         receiver.SOCK_ADDR = 'logjsonl'
     else:
         receiver.SOCK_ADDR = (args.ip, 2154)
-    if os.path.exists(args.gps):
-        GPS_reader.PORT = args.gps
     #
     chans = [c for c in args.chans if 11 <= c <= 26]
     if chans == []:
@@ -172,8 +165,6 @@ def main():
     stop_event = Event()
     interpreter._THREADED = True
     interpreter._STOP_EVENT = stop_event
-    GPS_reader._THREADED = True
-    GPS_reader._STOP_EVENT = stop_event
     receiver._THREADED = True
     receiver._STOP_EVENT = stop_event
 
@@ -188,11 +179,6 @@ def main():
     # start interpreter (/server)
     interp = interpreter()
     threads.append((interp, threadit(interp.process)))
-
-    # start gps reader
-    gps = GPS_reader()
-    receiver.GPS = gps
-    threads.append((gps, threadit(gps.listen)))
 
     # start CC2531 receivers
     ccs = prepare_receiver(chans)
