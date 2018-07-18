@@ -7,6 +7,7 @@ import decoder
 import time
 import datetime
 import json
+import sys
 from libmich.formats import IEEE802154
 from struct import unpack
 from time import strftime, localtime, sleep
@@ -122,7 +123,9 @@ class interpreter(object):
 
     def output(self, line=''):
         if self.OUTPUT_STDOUT:
-            print(line)
+            sys.stdout.write(line)
+            sys.stdout.write("\n")
+            sys.stdout.flush()
         if self.OUTPUT_FILE:
             try:
                 fd = open(self.OUTPUT_FILE, 'a')
