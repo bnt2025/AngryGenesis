@@ -3,7 +3,6 @@ import socket
 import signal
 import argparse
 import json
-
 from time import time, sleep
 from binascii import hexlify, unhexlify
 from threading import Thread, Event
@@ -155,9 +154,13 @@ def prolog():
     interpreter.FCS_IGNORE = args.nofcschk
     return chans
 
+def get_gps_service():
+    try:
+        pass
+    except ImportError:
+        print("[!] Could not import gps_thread.py. GPS is not going to work")
 
 def main():
-    os.system("clear")
     global running
     running = False
     chans = prolog()
@@ -198,3 +201,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+   
+   

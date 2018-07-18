@@ -13,7 +13,7 @@ from time import strftime, localtime, sleep
 from binascii import hexlify
 from CC2531 import CHANNELS
 from libmich.formats.IEEE802154 import TI_USB, TI_CC, IEEE802154
-
+from gps_thread import GPSThread
 
 # export filtering
 __all__ = ['interpreter']
@@ -58,8 +58,12 @@ class interpreter(object):
                 and isinstance(self.SOCK_ADDR[0], str) and isinstance(self.SOCK_ADDR[1], int):
             self._create_udp_serv()
         else:
+
             raise(Exception('bad SOCK_ADDR parameter'))
 
+        self.gps = GPSThread()
+        self.gps.useGPSD()
+        self.gps.start()
         # catch CTRL+C
         if not self._THREADED:
             def serv_int(signum, frame):
@@ -110,6 +114,9 @@ class interpreter(object):
 
     def stop(self):
         self._processing = False
+
+        if self.gps is not None:
+            self.gps.stop()
         sleep(0.2)
         self._sk.close()
 
@@ -173,7 +180,7 @@ class interpreter(object):
                 fcschk = "OK"
             else:
                 fcschk = "error"
-
+            loc = self.gps.getLastGoodGPSFix()
             data = {
                 "timestamp": self.get_dtg(),
                 "type": "zigbee",
@@ -182,7 +189,7 @@ class interpreter(object):
                 "band": "7",
                 "channel": self._cur_msg["channel"],
                 "rssi": self._cur_msg["RSSI"],
-                "location": {"lat": 50, "lon": 50},
+                "location": {"lat": loc["Latitude"], "lon": loc['Longitude']},
                 "localname": "TI CC2531",
                 "codename": "Zigbee Survey",
                 "deviceid": "12345",
