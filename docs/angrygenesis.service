@@ -1,0 +1,15 @@
+# sudo mv angrygenesis.service /etc/systemd/system/
+# sudo chmod 0777 /etc/systemd/system/angrygenesis.service
+# sudo systemctl daemon-reload
+# sudo systemctl enable angrygenesis.service
+# sudo systemctl start angrygenesis
+
+[Unit]
+Description=Angry Genesis
+
+[Service]
+ExecStart=/bin/bash -c "cd /opt/AngryGenesis && ./run.sh"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
