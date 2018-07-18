@@ -16,9 +16,7 @@ To use ANGRY GENESIS ensure that you have the following hardware;
 ANGRY GENESIS requires the following packages to be installed;
 
 * GPSD: http://www.catb.org/gpsd/installation.html
-* libusb-1: http://www.libusb.org/wiki/libusb-1.0
 * python-libusb1: https://github.com/vpelletier/python-libusb1
-* pySerial (for gps.py): http://pyserial.sourceforge.net/
 * and the libmich library: https://github.com/mitshell/libmich
 
 ### Installing
