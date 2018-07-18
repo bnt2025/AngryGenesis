@@ -41,12 +41,3 @@ PUT /iot
         }
     }
 }
-
-PUT  iot/_settings
-{
-    "index": {
-        "blocks": {
-            "read_only_allow_delete": true
-        }
-    }
-}
