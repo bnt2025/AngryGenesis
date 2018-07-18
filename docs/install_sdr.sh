@@ -2,9 +2,11 @@
 
 # Simple installer for the IEE802.15.4 and RFTap GNURadio blocks
 # Unfortunatly it uses UHD. I tried modifying it to use LimeSDR-Mini with no avail
-# I included them in to grc folder
+# I included them in to grc folder to play with again later.
 
 main() {
+
+	sudo chmod 0777 /usr/local/src
 	add_repos
 	install_deps
 	install_grlime
@@ -26,6 +28,7 @@ install_deps() {
 	sudo apt install limesuite liblimesuite-dev limesuite-udev -y
 }
 
+# Install the GNURadio source block
 install_grlime() {
 	git clone https://github.com/myriadrf/gr-limesdr.git
 	cd gr-limesdr
@@ -43,7 +46,6 @@ install_grfoo() {
 }
 
 # Have to use the master branch as GNURadio renamed a varible and it fails to compile
-
 install_grieee80215() {
 	wget https://github.com/bastibl/gr-ieee802-15-4/archive/master.zip
 	unzip master.zip && rm master.zip
@@ -51,6 +53,7 @@ install_grieee80215() {
 	build_src
 }
 
+# They have a 'working' example, but requires UHD
 install_rftap() {
 	git clone https://github.com/rftap/gr-rftap.git
 	cd gr-rftap
