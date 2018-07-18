@@ -66,7 +66,7 @@ public class AngryGenesis implements Runnable
                 
                 json.put("tx_id", frame.getSrcAddress());
                 json.put("rx_id", frame.getDestAddress());
-                json.put("networkid", String.format("0x%04X\n",frame.getSrcPAN()));
+                json.put("networkid", String.format("0x%04X",frame.getSrcPAN()));
 
                 log.println(json.toString());
                                 
