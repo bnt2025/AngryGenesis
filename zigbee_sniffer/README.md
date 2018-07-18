@@ -25,6 +25,12 @@ ANGRY GENESIS requires the following packages to be installed;
 
 An installer script is yet to be written that will handle the prerequisites.
 
+Install python librarys for the GPS module with the following command;
+
+```
+sudo apt-get install gpsd gpsd-clients python-gps
+```
+
 To start the software navigate to the zigbee_sniffer folder.
 
 
