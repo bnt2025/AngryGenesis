@@ -67,7 +67,8 @@ build_src() {
 
 setup_gnuradio() {
 	sudo chmod 0777 /home/$USER/.grc_gnuradio
-
+	# If you get the cannot find transceiver_OQPSK block this is why 
+	echo "[+] Open /usr/local/src/gr-ieee802-15-4-master/examples in GNURadio and build it."
 }
 
 main

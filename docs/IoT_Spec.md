@@ -56,6 +56,13 @@ localname|String|Friendly display name for the capture device.
 codename|String|A tag for a capture session.
 deviceid|String|Unique identifer for the capture device
 
+### Time format
+Example of how to get the time in the correct format. 
+Python
+<pre> 
+print datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
+</pre>
+
 ### Band Table
 This is just the ISM bands from https://en.wikipedia.org/wiki/ISM_band#Frequency_allocation
 Index | Start | Stop
