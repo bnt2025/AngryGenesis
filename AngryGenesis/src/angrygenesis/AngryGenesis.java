@@ -3,9 +3,11 @@ package angrygenesis;
 import angrygenesis.mac.MACFrame;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
 import java.util.Map;
 import org.json.JSONObject;
 
@@ -26,7 +28,15 @@ public class AngryGenesis implements Runnable
     public AngryGenesis(Process snifferProcess) throws IOException
     {
         this.snifferProcess = snifferProcess;
-        this.log = new PrintStream(new FileOutputStream("log.json"));
+        
+        LocalDateTime timePoint = LocalDateTime.now();     // The current date and time
+        String logFileName = String.format("%d%d%d-%d%d-log.jsonl", timePoint.getYear(), timePoint.getMonth().getValue(),
+                timePoint.getDayOfMonth(), timePoint.getHour(), timePoint.getMinute());
+        
+        File logDataDir = new File("logdata");
+        File logFile = new File(logDataDir, logFileName);
+        
+        this.log = new PrintStream(new FileOutputStream(logFile));
         
     }
     
