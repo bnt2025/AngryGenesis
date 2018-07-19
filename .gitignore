@@ -1,12 +1,4 @@
 
 *.pyc
 *jsonl
-log.json
-data/*
-*.jsonl
-
-<<<<<<< HEAD
-*.jsonl
-=======
-/AngryGenesis/build/
->>>>>>> master
+*json
