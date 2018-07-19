@@ -107,9 +107,14 @@ ANGRY GENESIS has been developed on Linux, and known to not work on Windows. It 
 # Analysis Setup
 ## Install
 ELK is cross platform but the instruction will be for windows.
-Get the ELK installer from https://bitnami.com/stack/elk
-Follow the instructions from https://docs.bitnami.com/installer/apps/elk/
-Install the following plugin https://github.com/dlumbrer/kbn_network (make sure you have to correct version for ELK)
+* Get the ELK installer from https://bitnami.com/stack/elk
+* Follow the instructions from https://docs.bitnami.com/installer/apps/elk/
+* Install the following plugin https://github.com/dlumbrer/kbn_network (make sure you have to correct version for ELK)
+Other recommended plugins, that can help  with analysis
+* https://github.com/prelert/kibana-swimlane-vis
+* https://github.com/elo7/cohort
+* https://github.com/sirensolutions/kibi_radar_vis
+
 
 Restart everything using the manager window (be patient it takes a while to restart)
 
