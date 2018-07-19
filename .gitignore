@@ -1,4 +1,6 @@
 
 *.pyc
+*jsonl
 log.json
+data/*
 *.jsonl
