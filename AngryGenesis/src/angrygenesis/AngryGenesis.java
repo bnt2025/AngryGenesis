@@ -30,7 +30,7 @@ public class AngryGenesis implements Runnable
         this.snifferProcess = snifferProcess;
         
         LocalDateTime timePoint = LocalDateTime.now();     // The current date and time
-        String logFileName = String.format("%d%d%d-%d%d-log.jsonl", timePoint.getYear(), timePoint.getMonth().getValue(),
+        String logFileName = String.format("%d%d%02d-%02d%02d-log.jsonl", timePoint.getYear(), timePoint.getMonth().getValue(),
                 timePoint.getDayOfMonth(), timePoint.getHour(), timePoint.getMinute());
         
         File logDataDir = new File("logdata");
