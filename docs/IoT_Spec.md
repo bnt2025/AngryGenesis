@@ -78,7 +78,7 @@ Index | Start | Stop
 8|5725|5875
 
 ### Example data
-{"timestamp":"2018-06-06T23:59:52.511+00:00", "type":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":7, "channel": 15, "rssi": -10, "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
+{"timestamp":"2018-06-06T23:59:52.511765", "type":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":7, "channel": 15, "rssi": -10, "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
  
 ## Zigbee
 Zigbee is a mesh protocol. Each node can act as a data source and a repeater.
@@ -91,6 +91,7 @@ Designed to work on the 2.4GHz ISM band.
 Typical output power for each node is 18 dBm
 
 #### Bands
+There are 27 channels used in Zigbee.
 Channel Number | Frequency (MHz)
 --- | ---
 0 |	868
