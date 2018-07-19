@@ -24,6 +24,7 @@ install_deps() {
 	sudo pip install libusb1
 	sudo apt install -y openjdk-8-jre-headless
 	sudo apt-get install gpsd gpsd-clients python-gps
+	sudo apt install -y usbmount
 
 }
 
