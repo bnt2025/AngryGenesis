@@ -3,6 +3,7 @@ import socket
 import signal
 import argparse
 import json
+import datetime
 from time import time, sleep
 from binascii import hexlify, unhexlify
 from threading import Thread, Event
@@ -147,7 +148,7 @@ def prolog():
     # Writes data to a file.
     interpreter.SOCK_ADDR = receiver.SOCK_ADDR
     if args.file:
-        interpreter.OUTPUT_FILE = 'log.jsonl'
+        interpreter.OUTPUT_FILE = datetime.datetime.now().strftime("%Y%m%d-%H%M%S_iot.jsonl")
     else:
         interpreter.OUTPUT_FILE = None
     interpreter.OUTPUT_STDOUT = not args.silent
