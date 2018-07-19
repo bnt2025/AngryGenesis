@@ -7,5 +7,5 @@
 set -e
 
 cd zigbee_sniffer
-#python sniffer.py -c 15 -f
-python sniffer.py -f
+python sniffer.py -c 15 -f
+#python sniffer.py -f
