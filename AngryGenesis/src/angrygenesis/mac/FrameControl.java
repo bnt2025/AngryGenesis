@@ -112,6 +112,21 @@ public class FrameControl
         return srcAddrMode;
     }
     
-    
+    public String toString()
+    {
+        String rtn = "{\n\tFrameControl = "+this.getFrameType().toString()+",\n";
+        rtn += "\tSecurity Enabled = "+this.isSecurityEnabled() +",\n";
+        rtn += "\tFrame Pending = "+this.isFramePending() + ",\n";
+        rtn += "\tAck Request = "+this.isAckReq()+ ",\n";
+        rtn += "\tIntra Pan = "+this.isIntraPAN()+",\n";
+        
+        
+        rtn += "\tDestination Addressing Mode = "+this.getDestAddrMode().toString() + ",\n";
+        rtn += "\tSource Addressing Mode = "+this.getSrcAddrMode().toString() + ",\n";
+        
+        rtn += "}";
+        
+        return rtn;
+    }
             
 }

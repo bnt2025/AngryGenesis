@@ -57,7 +57,8 @@ public class AngryGenesis implements Runnable
         JSONObject json = new JSONObject(line);
         
         // extract raw frame data
-        String rawFrameData = (String)json.remove("frame");
+        //String rawFrameData = (String)json.remove("frame");
+        String rawFrameData = (String)json.getString("frame");
         
         
         // decode MAC frame from raw data
@@ -140,6 +141,7 @@ public class AngryGenesis implements Runnable
             catch(Exception e)
             {
                 //e.printStackTrace();
+                System.out.println("Exception eaten");
             }
         }
         

@@ -34,6 +34,7 @@ public class MACFrame
         
         //---- Frame control
         this.frameControl = new FrameControl(rawData);
+        //System.out.println(this.frameControl.toString());
         
         //---- Packet sequence number
         this.seqNum = rawData[2];
@@ -43,7 +44,6 @@ public class MACFrame
         switch(this.frameControl.getFrameType())
         {
             case FRAME_TYPE_BEACON:
-                
                 // no destination address/pan in beacon frames
                 pointer = this.getAddresses(pointer, false);
                 
@@ -114,34 +114,37 @@ public class MACFrame
         //----  Source PAN and address
         
         // if intra PAN field is set, then the src and dest PAN IDs are the same
-        if(this.frameControl.isIntraPAN())
+        if(this.frameControl.getSrcAddrMode() != AddressingMode.NONE)
         {
-            this.srcPAN = this.destPAN;
-        }
-        else
-        {
-            this.srcPAN = getPAN(pointer);
-            pointer += 2;
-        }
-
-        switch(frameControl.getSrcAddrMode())
-        {
-            // 64-bit
-            case EXTENDED:
-
-                this.srcAddress = String.format("%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X",
-                            rawData[pointer+7], rawData[pointer+6], rawData[pointer+5], rawData[pointer+4],
-                            rawData[pointer+3], rawData[pointer+2], rawData[pointer+1], rawData[pointer]);
-                    
-                pointer += 8;
-
-                break;
-
-            // 16-bit
-            case SHORT:
-                this.srcAddress = String.format("0x%04X", (rawData[pointer+1] << 8) | rawData[pointer]);
+            if(this.frameControl.isIntraPAN())
+            {
+                this.srcPAN = this.destPAN;
+            }
+            else
+            {
+                this.srcPAN = getPAN(pointer);
                 pointer += 2;
-                break;
+            }
+
+            switch(frameControl.getSrcAddrMode())
+            {
+                // 64-bit
+                case EXTENDED:
+
+                    this.srcAddress = String.format("%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X",
+                                rawData[pointer+7], rawData[pointer+6], rawData[pointer+5], rawData[pointer+4],
+                                rawData[pointer+3], rawData[pointer+2], rawData[pointer+1], rawData[pointer]);
+
+                    pointer += 8;
+
+                    break;
+
+                // 16-bit
+                case SHORT:
+                    this.srcAddress = String.format("0x%04X", (rawData[pointer+1] << 8) | rawData[pointer]);
+                    pointer += 2;
+                    break;
+            }
         }
         
         return pointer;
