@@ -32,6 +32,16 @@ install_ag() {
 
 }
 
+configure_gpsd() {
+FILE="/etc/default/gpsd"
+/bin/cat <<EOM >$FILE
+START_DAEMON="true"
+USBAUTO="true"
+DEVICES="/dev/ttyUSB0"
+GPSD_OPTIONS="-n"
+EOM
+}
+
 install_libmich() {
 	# TODO have a test for this and install if needed. 
 	cd $INSTALL_DIR
