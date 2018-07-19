@@ -93,7 +93,6 @@ def prepare_receiver(chans=[0x0f, 0x14, 0x19]):
 # Main program
 ###
 
-
 def prolog():
     # command line handler
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
