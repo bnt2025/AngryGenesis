@@ -106,6 +106,9 @@ ANGRY GENESIS has been developed on Linux, and known to not work on Windows. It 
 
 # Analysis Setup
 ## Install
+MobaxTerm is a very small Linux GNU environment for Windows, that will be used to import files into ELK.
+* Get in the installer from https://mobaxterm.mobatek.net/download.html
+
 ELK is cross platform but the instruction will be for windows.
 * Get the ELK installer from https://bitnami.com/stack/elk
 * Follow the instructions for your operating system.
@@ -120,30 +123,35 @@ Other recommended plugins, that can help  with analysis;
 Restart everything using the manager window (be patient it takes a while to restart)
 
 ## Setup
+* Open a browser and navigate to 127.0.0.1
+* Click on Access ELK
 * Log into Kibana (use the user and password that you set up during ELK installation)
 * Go to Dev Tools on the left hand side.
-* Copy the contents of docs/elkmapping.txt into the left hand console.
-* Hover over the section and press the green arrow that appears.
+* Click "Get to Work" and delete everything in the left hand console window.
+* Copy the contents of docs/elkmapping.txt (from this repo) into the left hand console (Click on raw to make it easier.
+* Hover over the section and press the green arrow that appears and look for the acknowleged: true. 
 * Import some data as per the note section below.
 * After importing data go to the Management section on the left hand side.
 * Click Index Patterns.
-* Click Create Index Pattern.
 * Type iot into the index-name-* box and click next.
 * Select timestamp from the drop down menu and click next.
+* Click Create Index Pattern.
 
-## Visualise
-* Click Visualise and Click New.
+## Visualise Data
+* Click Visualise and click the + box or Create a visualisation.
 * Click Coordinate Map.
 * Select iot from the left hand column.
 * Click Geo Coordinate unser Buckets.
-* Select GeoHash in the new drop down menu that appears.
+* Select GeoHash in the new drop down menu that appears (marked aggregation). 
 * Select location in the other new drop down menu.
 * Click the play button to view the data on a map.
-* Click Save on the top of the webpage to do just that, for ease later on.
+* Click Save on the top of the webpage to do just that, for ease later on, then click it again.
+* Make sure the time filter isn't on the last 15 mins (Top right of webpage). The test data was collected in July 2018 so make sure this time period is visible if you cant see any data.
 
 ## Notes
 We have to wrap the IoT JSONL format into another dictionary for ELK to understand it.   
 The command to upload a file using cURL to ELK is below. This was done uisng MobaXterm on Windows.
+Replace test.jsonl with your file name. There is a test file in the docs folder in this project.
 
 <pre>
 FILENAME="test.jsonl"
