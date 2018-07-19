@@ -160,7 +160,6 @@ class interpreter(object):
             else:
                 for sk in r:
                     msg = sk.recv(self.SOCK_BUFLEN)
-                    #print('UDP msg: %s' % msg.encode('hex'))
                     while len(msg) >= 4:
                         frame_len = unpack('!I', msg[:4])[0]
                         frame = msg[4:4+frame_len]

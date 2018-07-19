@@ -23,7 +23,8 @@ ANGRY GENESIS requires the following packages to be installed;
 
 ### Installing
 
-An installer can be in the root directory of the project, shockingly called `install.sh`. 
+ANGRY GENESIS has been developed for Linux OS and as such can be run within Ubuntu, Raspberry Pi etc
+An installer can be found within the root directory of the project, shockingly called `install.sh`. 
 
 
 ### Start

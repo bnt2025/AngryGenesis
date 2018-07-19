@@ -20,16 +20,26 @@ install_deps() {
 	sudo apt update 
     sudo apt dist-upgrade -y
 	echo "[+] Installing Dependiencies"
-	sudo apt install -y git
 	sudo apt install -y python-pip
 	sudo -H pip install -y libusbl
 	sudo apt install -y openjdk-8-jre-headless
+	sudo apt-get install gpsd gpsd-clients python-gps
 
 }
 
 install_ag() {
 	mv ../AngryGenesis $INSTALL_DIR/
 
+}
+
+configure_gpsd() {
+FILE="/etc/default/gpsd"
+/bin/cat <<EOM >$FILE
+START_DAEMON="true"
+USBAUTO="true"
+DEVICES="/dev/ttyUSB0"
+GPSD_OPTIONS="-n"
+EOM
 }
 
 install_libmich() {
