@@ -56,6 +56,7 @@ localname|String|Friendly display name for the capture device.
 codename|String|A tag for a capture session.
 deviceid|String|Unique identifer for the capture device
 networkid|String|Unique identifier for the network being monitored (e.g. wifi SSID, 802.15.4 PAN, etc.)
+frame|String|Raw frame data from collection
 
 ### Time format
 Example of how to get the time in the correct format.
