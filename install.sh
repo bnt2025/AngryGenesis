@@ -9,8 +9,8 @@ INSTALL_DIR="/opt"
 main() {
 	cd chmod -R 0777 $INSTALL_DIR
     install_deps
-    install_libmich
     install_ag
+    install_libmich
     setup_service
     echo "[+] Install complete"
 }
@@ -27,7 +27,13 @@ install_deps() {
 
 }
 
+install_ag() {
+	mv ../AngryGenesis $INSTALL_DIR/
+
+}
+
 install_libmich() {
+	# TODO have a test for this and install if needed. 
 	cd $INSTALL_DIR
 	echo "[+] Downloading and installing librarys from Github"
 	sudo git clone https://github.com/mitshell/libmich.git
@@ -35,14 +41,6 @@ install_libmich() {
 	sudo python setup.py install
 }
 
-install_ag() {
-	cd $INSTALL_DIR
-	echo "[+] Getting ANGRY GENESIS from Github"
-	sudo git clone https://github.com/bnt2025/AngryGenesis.git
-	echo "[+] Starting ANGRY GENESIS"
-	cd AngryGenesis
-
-}
 
 setup_service() {
 	sudo cp $INSTALL_DIR/AngryGenesis/docs/angrygenesis.service /etc/systemd/system/
