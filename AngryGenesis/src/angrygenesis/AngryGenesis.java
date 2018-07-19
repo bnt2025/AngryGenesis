@@ -17,7 +17,7 @@ import org.json.JSONObject;
  */
 public class AngryGenesis implements Runnable
 {
-    private static final String SNIFFER_CMD_LINE = "./startsniff.sh";
+    private static final String SNIFFER_CMD_LINE = "./zigbee_sniffer/startsniff.sh";
     
     
     private final Process snifferProcess;
