@@ -22,9 +22,9 @@ install_deps() {
 	sudo apt dist-upgrade -y
 	echo "[+] Installing Dependiencies"
 	sudo apt install -y python-pip
-	sudo pip install libusb1
+	sudo -H pip install libusb1
 	sudo apt install -y openjdk-8-jre-headless
-	sudo apt-get install gpsd gpsd-clients python-gps
+	sudo apt install -y gpsd gpsd-clients python-gps
 	sudo apt install -y usbmount
 
 }
