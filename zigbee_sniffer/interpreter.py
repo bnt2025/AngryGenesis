@@ -59,7 +59,6 @@ class interpreter(object):
                 and isinstance(self.SOCK_ADDR[0], str) and isinstance(self.SOCK_ADDR[1], int):
             self._create_udp_serv()
         else:
-
             raise(Exception('bad SOCK_ADDR parameter'))
 
         self.gps = GPSThread()

@@ -11,6 +11,7 @@ from CC2531 import *
 from receiver import *
 from interpreter import *
 
+
 def LOG(msg=''):
     print('[sniffer] %s' % msg)
 
@@ -94,6 +95,7 @@ def prepare_receiver(chans=[0x0f, 0x14, 0x19]):
 # Main program
 ###
 
+
 def prolog():
     # command line handler
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -155,6 +157,7 @@ def prolog():
     interpreter.FCS_IGNORE = args.nofcschk
     return chans
 
+
 def main():
     global running
     running = False
@@ -196,5 +199,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-   
-   
