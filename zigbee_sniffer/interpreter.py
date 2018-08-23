@@ -230,7 +230,7 @@ class interpreter(object):
             self._interpret_TI_USB(V)
         elif T == 0x20:
             self._cur_msg["frame"] = V
-            mac = self.DECODER()
+            mac = DECODER()
             mac.parse(V)
             self._cur_msg["MAC"] = mac
             self.makejson(mac)
