@@ -154,12 +154,6 @@ def prolog():
     interpreter.FCS_IGNORE = args.nofcschk
     return chans
 
-def get_gps_service():
-    try:
-        pass
-    except ImportError:
-        print("[!] Could not import gps_thread.py. GPS is not going to work")
-
 def main():
     global running
     running = False
