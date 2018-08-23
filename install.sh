@@ -10,6 +10,7 @@ main() {
     sudo chmod -R 0777 $INSTALL_DIR
     install_deps
     install_ag
+	build_ag
     install_libmich
     setup_service
     echo "[+] Install complete"
@@ -25,12 +26,19 @@ install_deps() {
 	sudo apt install -y openjdk-8-jre-headless
 	sudo apt install -y gpsd gpsd-clients python-gps
 	sudo apt install -y usbmount
+	sudo apt install -y ant
 
 }
 
 install_ag() {
 	mv ../AngryGenesis $INSTALL_DIR/
 
+}
+
+build_ag(){
+	cd $INSTALL_DIR/AngryGenesis/AngryGenesis
+	rm -rf build dist # just ins case
+	ant jar
 }
 
 install_libmich() {
