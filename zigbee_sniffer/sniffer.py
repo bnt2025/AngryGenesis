@@ -68,6 +68,7 @@ def prepare_receiver(chans=[0x0f, 0x14, 0x19]):
     #
     if len(ccs) == 0:
         LOG(' no CC2531 dongles found')
+        exit(1)
         return []
 
     # split the chans' list into separate lists for all receivers
