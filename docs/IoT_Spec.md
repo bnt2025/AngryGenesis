@@ -32,7 +32,7 @@ Some of the assumed common parameters so far are;
 *	RSSI (dBm)
 *	Band
 *	Channel
-*	Type (Protocol)
+*	Protocol
 *	Collector ID
 *	Collector Name
 *	Collector Session
@@ -45,7 +45,7 @@ The preference for file format is JSONL containing the following keys.
 Field Name | Data Type | Description
 --- | --- | ---
 timestamp|String|Timestamp of the capture in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
-type|String|IoT protocol. For ease I think it should be the name in all lowercase instead of a lookup table.
+protocol|String|IoT protocol. For ease I think it should be the name in all lowercase instead of a lookup table.
 tx_id|String|Transmitter ID of the remote device. The foramt of this will probably change between different protocols.
 rx_id|String|Receiver ID that the remote device was talking to.
 band|Integer|The RF band that the data was captured on. I guess we should have a lookup table that this references.
@@ -79,7 +79,7 @@ Index | Start | Stop
 8|5725|5875
 
 ### Example data
-{"timestamp":"2018-06-06T23:59:52.511765", "type":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":7, "channel": 15, "rssi": -10, "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
+{"timestamp":"2018-06-06T23:59:52.511765", "protocol":"zigbee", "tx_id":"1234", "rx_id":"4321", "band":7, "channel": 15, "rssi": -10, "location":{"lat":50.00, "lon":50.00}, "localname": "iot sniffer", "codename": "Test Capture", "deviceid":"1234"}
  
 ## Zigbee
 Zigbee is a mesh protocol. Each node can act as a data source and a repeater.
@@ -189,9 +189,10 @@ Min output power is prescribed per ED by the BSN. Each ED is put into the follow
 Weightless-P performs frequency hopping. The hopping sequence is defined in the System Information Block (SIB) of each frame. The hopping is only in band.
 
 ### Derived parameters
-*	TRx ID is assumed to be uuEID, iEID, gEID or BS_ID.
-*	BSN_ID.
-*	Band.
+
+*	uuEID, iEID, gEID or BS_ID. This is the tx_id or rx_id field in the common iot spec.
+*	BSN_ID. This is the networkid field in the common iot spec.
+*	Band. This is the band field in the common iot spec.
 *	Frequency.
 *	Bandwidth.
 *	Frame Duration.
