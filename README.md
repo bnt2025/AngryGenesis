@@ -43,6 +43,17 @@ And finally to stop;
 sudo service angrygenesis stop
 </pre> 
 
+To run manually, from the project root directory use 
+<pre>
+sudo ./run.sh 
+</pre>
+
+To modify the location of the log files directory edit the `run.sh` varible LOG_FILE_DIR.
+Use the example below if you want the files to save to the `/media/usb` directory 
+<pre>
+LOG_FILE_DIR="/media/usb"
+</pre>
+
 The python zigbee sniffer can also run stand alone that dumps the raw frames within the JSON object
 To start the software navigate to the zigbee_sniffer folder.
 

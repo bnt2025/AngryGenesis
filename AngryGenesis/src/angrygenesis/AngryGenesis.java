@@ -14,6 +14,7 @@ import org.json.JSONObject;
 /**
  *
  * @author dools
+ * @author bnt2025
  */
 public class AngryGenesis implements Runnable {
     private static final String SNIFFER_CMD_LINE = "./zigbee_sniffer/startsniff.sh";
@@ -22,7 +23,7 @@ public class AngryGenesis implements Runnable {
 
     private final PrintStream log;
 
-    public AngryGenesis(Process snifferProcess) throws IOException {
+    public AngryGenesis(Process snifferProcess, File logDataDir) throws IOException {
         this.snifferProcess = snifferProcess;
 
         LocalDateTime timePoint = LocalDateTime.now(); // The current date and time
@@ -30,8 +31,7 @@ public class AngryGenesis implements Runnable {
                 timePoint.getMonth().getValue(), timePoint.getDayOfMonth(), timePoint.getHour(), timePoint.getMinute(),
                 timePoint.getSecond());
 
-        File logDataDir = new File("/media/usb");
-        File logFile = new File(logDataDir, logFileName);
+		File logFile = new File(logDataDir, logFileName);
 
         this.log = new PrintStream(new FileOutputStream(logFile));
 
@@ -131,7 +131,7 @@ public class AngryGenesis implements Runnable {
 
     }
 
-    private static AngryGenesis startSnifferProcess() throws Exception {
+    private static AngryGenesis startSnifferProcess(File logFileDir) throws Exception {
         // build the process
         ProcessBuilder pb = new ProcessBuilder(SNIFFER_CMD_LINE);
         Map<String, String> env = pb.environment();
@@ -142,7 +142,7 @@ public class AngryGenesis implements Runnable {
 
         if (snifferProcess.isAlive()) {
             // process is alive... so create AG object and launch new thread
-            AngryGenesis ag = new AngryGenesis(snifferProcess);
+            AngryGenesis ag = new AngryGenesis(snifferProcess, logFileDir);
             Thread th = new Thread(ag);
             th.start();
 
@@ -153,13 +153,32 @@ public class AngryGenesis implements Runnable {
 
     }
 
+	private static boolean check_dir(File dir) {
+		return dir.isDirectory() || dir.mkdirs();
+	}
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         try {
+
+			System.out.println("[+] Starting AngryGenesis");
+			File logDataDir;
+			if (args.length > 0) {
+				logDataDir = new File(args[0]);
+				if (check_dir(logDataDir)) {
+					System.out.println("[+] Saving logs to " + logDataDir.getAbsolutePath());
+				}
+			} else {
+				logDataDir = new File("logdata");
+				if (check_dir(logDataDir)) {
+					System.out.println("[+] Saving logs to " + logDataDir.getAbsolutePath());
+				}
+			}
+
             // spawn sniffer process
-            AngryGenesis ag = startSnifferProcess();
+            startSnifferProcess(logDataDir);
 
         } catch (Exception e) {
             e.printStackTrace();
