@@ -8,4 +8,3 @@ set -e
 
 cd zigbee_sniffer
 python sniffer.py -f
-#python sniffer.py -f

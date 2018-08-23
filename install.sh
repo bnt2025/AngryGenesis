@@ -59,6 +59,8 @@ setup_service() {
 
 }
 
+
+
 configure_gpsd() {
 	FILE="/etc/default/gpsd"
 	/bin/cat <<EOM >$FILE
