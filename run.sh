@@ -9,4 +9,4 @@ LOG_FILE_DIR="./logdata"
 #echo off
 set -e
 
-java -jar AngryGenesis/dist/AngryGenesis.jar $LOG_FILE_DIR
+sudo java -jar AngryGenesis/dist/AngryGenesis.jar $LOG_FILE_DIR
